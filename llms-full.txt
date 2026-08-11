@@ -49,6 +49,8 @@ docs.
 
 {/* docs7 retrigger after permission update */}
 
+<!-- docs7 preview comment test 2026-08-11T12:42:39Z -->
+
 # CLI
 Source: https://upstash.com/docs/agent-resources/cli
 
