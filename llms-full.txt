@@ -49,6 +49,8 @@ docs.
 
 {/* docs7 preview trigger */}
 
+{/* docs7 retrigger after permission update */}
+
 # CLI
 Source: https://upstash.com/docs/agent-resources/cli
 
