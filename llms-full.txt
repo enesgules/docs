@@ -9482,7 +9482,7 @@ Recommended Background Color Transition:
 Primary: #34D399 (Emerald Green)
 Secondary: #00E9A3 (Cyan Green)
 
-# Get Started
+# Get Started (Docs7 preview test)
 Source: https://upstash.com/docs/introduction
 
 import { Hero, SectionHead, ProductGrid, AgentResources, Concepts, Community } from "/snippets/landing.jsx";
