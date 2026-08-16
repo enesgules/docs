@@ -47,6 +47,10 @@ docs.
   dependencies.
 * Page loads as a 404 - Make sure you are running in a folder with `docs.json`
 
+{/* docs7 retrigger after permission update */}
+
+<!-- docs7 preview comment test 2026-08-11T12:42:39Z -->
+
 # CLI
 Source: https://upstash.com/docs/agent-resources/cli
 
@@ -9599,7 +9603,7 @@ Recommended Background Color Transition:
 Primary: #34D399 (Emerald Green)
 Secondary: #00E9A3 (Cyan Green)
 
-# Get Started
+# Get Started (Docs7 preview test)
 Source: https://upstash.com/docs/introduction
 
 import { Hero, SectionHead, ProductGrid, AgentResources, Concepts, Community } from "/snippets/landing.jsx";
