@@ -3,12 +3,58 @@
 // locally (Mintlify compiles exports in isolation, no cross-references).
 
 export const Hero = () => (
-  <div className="u-hero">
-    <h1>Build with Upstash</h1>
-    <p>
-      Serverless data, messaging, and AI infrastructure for developers. Scale to
-      zero, pay per request.
-    </p>
+  <div className="u-preview-hero">
+    <div className="u-preview-hero__copy">
+      <div className="u-preview-badge">
+        <span className="u-preview-badge__pulse" aria-hidden="true" />
+        Branch preview test
+      </div>
+      <h1>
+        Preview deployment
+        <span>is live.</span>
+      </h1>
+      <p>
+        This homepage is intentionally different. If you can see this purple
+        screen, the branch preview pipeline completed successfully.
+      </p>
+      <div className="u-preview-actions">
+        <a className="u-preview-button u-preview-button--primary" href="#products">
+          Check the documentation
+        </a>
+        <a className="u-preview-button" href="https://github.com/enesgules/docs/tree/codex/preview-webhook-homepage-test">
+          View test branch
+        </a>
+      </div>
+    </div>
+
+    <div className="u-preview-panel" role="status" aria-label="Preview deployment status">
+      <div className="u-preview-panel__header">
+        <span>Deployment signal</span>
+        <span className="u-preview-panel__status">Ready</span>
+      </div>
+      <dl>
+        <div>
+          <dt>Repository</dt>
+          <dd>enesgules/docs</dd>
+        </div>
+        <div>
+          <dt>Branch</dt>
+          <dd>codex/preview-webhook-homepage-test</dd>
+        </div>
+        <div>
+          <dt>Trigger</dt>
+          <dd>GitHub push webhook</dd>
+        </div>
+        <div>
+          <dt>Target</dt>
+          <dd>Branch preview</dd>
+        </div>
+      </dl>
+      <div className="u-preview-panel__success">
+        <span aria-hidden="true">✓</span>
+        New homepage assets loaded
+      </div>
+    </div>
   </div>
 );
 
