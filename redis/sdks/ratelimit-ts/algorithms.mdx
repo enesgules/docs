@@ -166,3 +166,17 @@ size of 10.
     _Not yet supported for `MultiRegionRatelimit`_
   </Tab>
 </Tabs>
+
+## Which algorithm should I use?
+
+| Algorithm      | Burst behavior                                                    | Cost                                    |
+| -------------- | ----------------------------------------------------------------- | --------------------------------------- |
+| Fixed Window   | Allows bursts to leak through at window boundaries                | Cheapest in storage and computation     |
+| Sliding Window | Smooths the boundary bursts of fixed window (approximate)         | More expensive than fixed window        |
+| Token Bucket   | Smooths bursts to a constant rate, with a configurable burst size | Most expensive in computation           |
+
+For the common per-API-key case, start with **Sliding Window**: it enforces a
+smooth limit without the boundary bursts of fixed window and is cheaper than
+token bucket. Reach for **Token Bucket** when you want to allow a larger initial
+burst (set `maxTokens` higher than `refillRate`), and prefer **Fixed Window**
+when you need the lowest cost or are using a [multi-region setup](/redis/sdks/ratelimit-ts/algorithms#sliding-window).
