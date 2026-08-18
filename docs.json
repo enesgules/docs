@@ -139,7 +139,7 @@
                   "redis/howto/ipallowlist",
                   "redis/howto/readyourwrites",
                   "redis/howto/migratefromregionaltoglobal",
-                  "redis/howto/ratelimit-api"
+                  "redis/howto/rate-limit-api"
                 ]
               },              {
                 "group": "SDKs",
