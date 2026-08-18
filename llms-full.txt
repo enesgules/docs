@@ -67926,6 +67926,13 @@ keys are randomly chosen for eviction. In future releases, Upstash plans to
 introduce more eviction policies, offering users a wider range of options to
 customize the eviction behavior according to their specific needs.
 
+## Related
+
+Eviction keeps a cache inside it's size limit, but it does not protect the
+database from a client that writes to fast. To cap the write rate per client,
+see [Rate Limit Your API](/docs/redis/howto/ratelimit-api) and the
+[eviction policies](/docs/redis/features/eviction#eviction-policies) we support.
+
 # Global Database
 Source: https://upstash.com/docs/redis/features/globaldatabase
 
@@ -70699,6 +70706,107 @@ monitor.on("monitor", (time, args, source, database) => {
 })
 ```
 </RequestExample>
+
+# Rate Limit Your API
+Source: https://upstash.com/docs/redis/howto/rate-limit-api
+
+Rate limiting protects your API from abuse and keeps your serverless costs
+predictable. With [@upstash/ratelimit](/docs/redis/sdks/ratelimit-ts/overview) you can
+add a limit to any endpoint in a few lines, because the limiter keeps it's state
+in Upstash Redis instead of in the memory of a single instance.
+
+<Callout type="info">
+  A rate limit check is a single Redis round trip, so it also works in edge
+  runtimes where a seperate connection pool is not available.
+</Callout>
+
+## Before You Start
+
+Create a database with the [Get Started](/docs/redis/overall/getstarted) guide and copy
+the `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` values from the
+database page. The the same credentials are used by every example below.
+
+## Install the SDK
+
+```bash
+npm install @upstash/ratelimit @upstash/redis
+```
+
+```
+pip install upstash-ratelimit upstash-redis
+```
+
+## Add the Limit to an Endpoint
+
+```typescript
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(10, "10 s"),
+  analytics: true,
+});
+
+export default async function handler(request: Request) {
+  const ip = request.headers.get("x-forwarded-for") ?? "anonymous";
+  const { success, limit, remaining, reset } = await ratelimit.limit(ip);
+
+  if (!success) {
+    return new Response("Too many requests", { status: 429 });
+  }
+
+  return new Response("Hello world");
+}
+```
+
+```python
+from upstash_ratelimit import Ratelimit, SlidingWindow
+from upstash_redis import Redis
+
+ratelimit = Ratelimit(
+    redis=Redis.from_env(),
+    limiter=SlidingWindow(max_requests=10, window=10),
+)
+
+response = ratelimit.limit("anonymous")
+if not response.allowed:
+    print("Too many requests")
+```
+
+Clients that go over the limit recieve a `429` response until the window resets.
+Each identifier is counted on it's own, so one noisy client can not consume the
+budget of another.
+
+## Choose an Algorithm
+
+The SDK ships three algorithms. The sliding window is the default choice for a
+public API because it smooths out the bursts that occured at the edge of a fixed
+window.
+
+| Algorithm | Best for |
+| --- | --- |
+| Fixed window | Simple limits where a burst at the window edge are acceptable |
+| Sliding window | Public APIs and login endpoints |
+| Token bucket | Clients that need to save up a burst budget |
+
+Read the [algorithms page](/docs/redis/sdks/ratelimit-ts/algorithms#sliding-window-log)
+for the trade-offs of each one, and the
+[getting started guide](/docs/redis/sdks/ratelimit-ts/getting-started) for a full
+walkthrough.
+
+## Watch the Limit in the Console
+
+With `analytics: true`, every call is recorded and the console draws the accepted
+and denied requests per identifier.
+
+<img width="800" />
+
+## Next Steps
+
+* [Rate limiting in Python](/docs/redis/sdks/ratelimit-py/getting-started)
+* [Protect your database with a global limit](/docs/redis/features/ratelimiting)
+* [Ratelimit costs](https://upstash.com/docs/redis/sdks/ratelimit-ts/costs)
 
 # Read Your Writes
 Source: https://upstash.com/docs/redis/howto/readyourwrites
