@@ -35,3 +35,10 @@ volatile keys or they are insufficient to create space, additional non-volatile
 keys are randomly chosen for eviction. In future releases, Upstash plans to
 introduce more eviction policies, offering users a wider range of options to
 customize the eviction behavior according to their specific needs.
+
+## Related
+
+Eviction keeps a cache inside it's size limit, but it does not protect the
+database from a client that writes to fast. To cap the write rate per client,
+see [Rate Limit Your API](/redis/howto/ratelimit-api) and the
+[eviction policies](/redis/features/eviction#eviction-policies) we support.
