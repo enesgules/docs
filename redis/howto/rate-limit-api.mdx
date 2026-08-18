@@ -1,0 +1,101 @@
+---
+title: Rate Limit Your API
+---
+
+Rate limiting protects your API from abuse and keeps your serverless costs
+predictable. With [@upstash/ratelimit](/redis/sdks/ratelimit-ts/overview) you can
+add a limit to any endpoint in a few lines, because the limiter keeps its state
+in Upstash Redis instead of in the memory of a single instance.
+
+<Info>
+  A rate limit check is a single Redis round trip, so it also works in edge
+  runtimes where a separate connection pool is not available.
+</Info>
+
+## Before You Start
+
+Create a database with the [Get Started](/redis/overall/getstarted) guide and copy
+the `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` values from the
+database page. The same credentials are used by every example below.
+
+## Install the SDK
+
+```bash
+npm install @upstash/ratelimit @upstash/redis
+```
+
+```
+pip install upstash-ratelimit upstash-redis
+```
+
+## Add the Limit to an Endpoint
+
+```typescript
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(10, "10 s"),
+  analytics: true,
+});
+
+export default async function handler(request: Request) {
+  const ip = request.headers.get("x-forwarded-for") ?? "anonymous";
+  const { success, limit, remaining, reset } = await ratelimit.limit(ip);
+
+  if (!success) {
+    return new Response("Too many requests", { status: 429 });
+  }
+
+  return new Response("Hello world");
+}
+```
+
+```python
+from upstash_ratelimit import Ratelimit, SlidingWindow
+from upstash_redis import Redis
+
+ratelimit = Ratelimit(
+    redis=Redis.from_env(),
+    limiter=SlidingWindow(max_requests=10, window=10),
+)
+
+response = ratelimit.limit("anonymous")
+if not response.allowed:
+    print("Too many requests")
+```
+
+Clients that go over the limit receive a `429` response until the window resets.
+Each identifier is counted on its own, so one noisy client cannot consume the
+budget of another.
+
+## Choose an Algorithm
+
+The SDK ships three algorithms. The sliding window is the default choice for a
+public API because it smooths out the bursts that occur at the edge of a fixed
+window.
+
+| Algorithm | Best for |
+| --- | --- |
+| Fixed window | Simple limits where a burst at the window edge is acceptable |
+| Sliding window | Public APIs and login endpoints |
+| Token bucket | Clients that need to save up a burst budget |
+
+Read the [algorithms page](/redis/sdks/ratelimit-ts/algorithms#sliding-window-log)
+for the trade-offs of each one, and the
+[getting started guide](/redis/sdks/ratelimit-ts/gettingstarted) for a full
+walkthrough.
+
+## Watch the Limit in the Console
+
+With `analytics: true`, every call is recorded and the console draws the accepted
+and denied requests per identifier.
+
+<img src="https://upstash.com/static/ratelimit-analytics.png" width="800" />
+
+## Next Steps
+
+- [Rate limiting in Python](/redis/sdks/ratelimit-py/gettingstarted)
+- [Protect your database with a global limit](/redis/features/ratelimiting)
+- [Ratelimit costs](https://upstash.com/docs/redis/sdks/ratelimit-ts/costs)

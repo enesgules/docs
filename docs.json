@@ -138,7 +138,8 @@
                   "redis/howto/keyspacenotifications",
                   "redis/howto/ipallowlist",
                   "redis/howto/readyourwrites",
-                  "redis/howto/migratefromregionaltoglobal"
+                  "redis/howto/migratefromregionaltoglobal",
+                  "redis/howto/rate-limit-api"
                 ]
               },              {
                 "group": "SDKs",
