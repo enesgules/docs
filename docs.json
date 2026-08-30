@@ -8,10 +8,68 @@
     "dark": "#34D399"
   },
   "favicon": "/favicon.png",
+  "filterSidebar": false,
+  "sidebarGroups": [
+    {
+      "group": "Products",
+      "products": [
+        { "tab": "Redis", "icon": "/img/icons/redis.svg" },
+        { "tab": "Vector", "icon": "/img/icons/vector.svg" },
+        { "tab": "QStash", "icon": "/img/icons/qstash.svg" },
+        { "tab": "Workflow", "icon": "/img/icons/workflow.svg" },
+        { "tab": "Search", "icon": "/img/icons/search.svg" },
+        { "tab": "Box", "icon": "/img/icons/box.svg" }
+      ]
+    },
+    {
+      "group": "Utility",
+      "products": [
+        { "tab": "Realtime" },
+        {
+          "product": "Rate Limit",
+          "groups": [
+            {
+              "group": "TypeScript",
+              "pages": [
+                "redis/sdks/ratelimit-ts/overview",
+                "redis/sdks/ratelimit-ts/gettingstarted",
+                "redis/sdks/ratelimit-ts/methods",
+                "redis/sdks/ratelimit-ts/features",
+                "redis/sdks/ratelimit-ts/traffic-protection",
+                "redis/sdks/ratelimit-ts/algorithms",
+                "redis/sdks/ratelimit-ts/costs",
+                {
+                  "group": "Integrations",
+                  "pages": [
+                    {
+                      "group": "Strapi",
+                      "pages": [
+                        "redis/integrations/ratelimit/strapi/getting-started",
+                        "redis/integrations/ratelimit/strapi/configurations"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "Python",
+              "pages": [
+                "redis/sdks/ratelimit-py/overview",
+                "redis/sdks/ratelimit-py/gettingstarted",
+                "redis/sdks/ratelimit-py/features",
+                "redis/sdks/ratelimit-py/algorithms"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "navigation": {
     "tabs": [
       {
-        "tab": "Overview",
+        "tab": "Documentation",
         "groups": [
           {
             "group": "Introduction",
@@ -681,39 +739,6 @@
                           }
                         ]
                       }
-                    ]
-                  },
-                  {
-                    "group": "Ratelimit (TS)",
-                    "pages": [
-                      "redis/sdks/ratelimit-ts/overview",
-                      "redis/sdks/ratelimit-ts/gettingstarted",
-                      "redis/sdks/ratelimit-ts/methods",
-                      "redis/sdks/ratelimit-ts/features",
-                      "redis/sdks/ratelimit-ts/traffic-protection",
-                      "redis/sdks/ratelimit-ts/algorithms",
-                      "redis/sdks/ratelimit-ts/costs",
-                      {
-                        "group": "Integrations",
-                        "pages": [
-                          {
-                            "group": "Strapi",
-                            "pages": [
-                              "redis/integrations/ratelimit/strapi/getting-started",
-                              "redis/integrations/ratelimit/strapi/configurations"
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "group": "Ratelimit (PY)",
-                    "pages": [
-                      "redis/sdks/ratelimit-py/overview",
-                      "redis/sdks/ratelimit-py/gettingstarted",
-                      "redis/sdks/ratelimit-py/features",
-                      "redis/sdks/ratelimit-py/algorithms"
                     ]
                   },
                   {
@@ -2110,7 +2135,7 @@
         ]
       },
       {
-        "tab": "Developer API",
+        "tab": "API Reference",
         "openapi": "devops/developer-api/openapi.yaml",
         "groups": [
           {
