@@ -9,7 +9,7 @@
   },
   "favicon": "/favicon.png",
   "filterSidebar": false,
-  "sidebarGroups": [
+  "productGroups": [
     {
       "group": "Products",
       "products": [
