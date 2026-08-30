@@ -13,18 +13,18 @@
     {
       "group": "Products",
       "products": [
-        { "tab": "Redis", "icon": "/img/icons/redis.svg" },
-        { "tab": "Vector", "icon": "/img/icons/vector.svg" },
-        { "tab": "QStash", "icon": "/img/icons/qstash.svg" },
-        { "tab": "Workflow", "icon": "/img/icons/workflow.svg" },
-        { "tab": "Search", "icon": "/img/icons/search.svg" },
-        { "tab": "Box", "icon": "/img/icons/box.svg" }
+        { "product": "Redis", "icon": "/img/icons/redis.svg" },
+        { "product": "Vector", "icon": "/img/icons/vector.svg" },
+        { "product": "QStash", "icon": "/img/icons/qstash.svg" },
+        { "product": "Workflow", "icon": "/img/icons/workflow.svg" },
+        { "product": "Search", "icon": "/img/icons/search.svg" },
+        { "product": "Box", "icon": "/img/icons/box.svg" }
       ]
     },
     {
       "group": "Utility",
       "products": [
-        { "tab": "Realtime" },
+        { "product": "Realtime" },
         {
           "product": "Rate Limit",
           "groups": [
