@@ -15,12 +15,11 @@
 }
 
 /* ============================================================
-   Custom landing page (mode: custom)
-   Upstash green: #10B981 / #34D399. Class-based dark mode (.dark).
+   Custom landing page (mode: frame)
    ============================================================ */
 
 .u-wrap {
-  max-width: 78rem;
+  max-width: 74rem;
   margin: 0 auto;
   padding: 0 1.5rem 6rem;
 }
@@ -68,42 +67,20 @@ html[data-current-path="/introduction"] #content-area {
 
 /* ---- Hero ---- */
 .u-hero {
-  position: relative;
-  text-align: center;
-  padding: 3.5rem 1rem 3rem;
-  overflow: hidden;
-}
-.u-hero::before {
-  content: "";
-  position: absolute;
-  top: -12rem;
-  left: 50%;
-  width: 64rem;
-  height: 24rem;
-  transform: translateX(-50%);
-  background: radial-gradient(
-    closest-side,
-    rgba(52, 211, 153, 0.22),
-    rgba(52, 211, 153, 0)
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-.u-hero > * {
-  position: relative;
-  z-index: 1;
+  padding: 3.75rem 0 3.5rem;
 }
 .u-hero h1 {
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
-  line-height: 1.05;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin: 0;
 }
 .u-hero p {
-  margin: 1.1rem auto 0;
-  max-width: 40rem;
+  margin: 0.75rem 0 0;
+  max-width: 42rem;
   font-size: 1.125rem;
+  line-height: 1.55;
   color: #52606d;
 }
 .dark .u-hero p {
@@ -124,70 +101,105 @@ html[data-current-path="/introduction"] #content-area {
   color: #f4f5f6;
 }
 
-.u-cta {
+.u-actions {
   display: flex;
   gap: 0.75rem;
-  justify-content: center;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  margin-top: 1.75rem;
 }
-.u-btn {
+.u-action {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.25rem;
-  border-radius: 0.65rem;
-  font-weight: 600;
+  min-height: 2.75rem;
+  padding: 0.65rem 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  font-family: inherit;
+  font-weight: 500;
   font-size: 0.95rem;
+  line-height: 1;
   text-decoration: none;
   transition:
-    transform 0.15s ease,
     background 0.15s ease,
-    border-color 0.15s ease;
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
-.u-btn--primary {
-  background: #10b981;
-  color: #05231a;
+.u-action:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
 }
-.u-btn--primary:hover {
-  background: #34d399;
-  transform: translateY(-1px);
+.u-action--primary {
+  background: #18181b;
+  color: #fff;
 }
-.u-btn--ghost {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  color: inherit;
+.u-action--primary:hover {
+  background: #27272a;
 }
-.dark .u-btn--ghost {
-  border-color: rgba(255, 255, 255, 0.16);
+.dark .u-action--primary {
+  background: #f4f4f5;
+  color: #18181b;
 }
-.u-btn--ghost:hover {
-  border-color: #10b981;
-  transform: translateY(-1px);
+.dark .u-action--primary:hover {
+  background: #e4e4e7;
+}
+.u-prompt-action .prompt {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+.u-prompt-action .prompt > div:first-child {
+  gap: 0;
+  padding: 0;
+}
+.u-prompt-action .prompt > div:first-child > span:first-child,
+.u-prompt-action .prompt > div:last-child {
+  display: none;
+}
+.u-prompt-action .prompt button {
+  min-height: 2.75rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #27272a;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+.u-prompt-action .prompt button:hover {
+  color: #18181b;
+  background: #fafafa;
+  box-shadow: 0 0 0 1px #10b981;
+}
+.dark .u-prompt-action .prompt button {
+  color: #f4f4f5;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+.dark .u-prompt-action .prompt button:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 1px #10b981;
 }
 
 /* ---- Section headings ---- */
 .u-section {
-  margin-top: 4rem;
+  margin-top: 3.5rem;
 }
-/* tighter gap between the hero and the first section */
-.u-wrap > .u-section:first-of-type {
-  margin-top: 2rem;
+.u-section--divider {
+  padding-top: 3.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
-.u-eyebrow {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #059669;
-}
-.dark .u-eyebrow {
-  color: #34d399;
+.dark .u-section--divider {
+  border-top-color: rgba(255, 255, 255, 0.1);
 }
 .u-section h2 {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.01em;
-  margin: 0.35rem 0 0;
+  margin: 0;
 }
 /* Mintlify renders the sub as <p> or <span> depending on content, so target
    the class only and force block display. */
@@ -324,12 +336,19 @@ html[data-current-path="/introduction"] #content-area {
 
 /* ---- Product cards (larger) ---- */
 .u-product .u-card__icon {
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 0.7rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  align-self: center;
 }
 .u-product .u-card__title {
-  font-size: 1.05rem;
+  font-size: 1rem;
+}
+.u-product,
+.u-tool,
+.u-community {
+  min-height: 5rem;
+  align-items: center;
 }
 
 /* ---- Console showcase ---- */
