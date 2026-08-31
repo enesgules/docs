@@ -22,9 +22,12 @@ type GroupEntry = { group: string } & (
 // Independently, a tab may carry a top-level `openapi` ref pointing at a
 // spec file — this is how Mintlify wires operation-ID page entries
 // (e.g. "GET /redis/databases") inside the tab's groups back to a spec.
-type TabEntry = { tab: string; openapi?: OpenApiRef } & (
+// A tab may also be a bare link (an `href` and nothing else) pointing at
+// an existing page — e.g. an "API Reference" tab shared across products.
+type TabEntry = { tab: string; openapi?: OpenApiRef; href?: string } & (
   | { groups: GroupEntry[]; pages?: never }
   | { pages: PageEntry[]; groups?: never }
+  | { groups?: never; pages?: never }
 );
 
 type ProductEntry = {
@@ -94,11 +97,13 @@ export function* walkNavigation(opts: WalkOptions): Generator<WalkItem> {
     }
 
     // A tab uses `groups` (most common) or `pages` directly — never both.
+    // A bare-link tab (href only) has neither and contributes nothing beyond
+    // its group item already yielded above.
     if (tab.groups) {
       for (const group of tab.groups) {
         yield* walkGroup(group, 1, opts.docsRoot);
       }
-    } else {
+    } else if (tab.pages) {
       for (const entry of tab.pages) {
         yield* walkEntry(entry, 1, opts.docsRoot);
       }
