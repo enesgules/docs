@@ -27,10 +27,15 @@ type TabEntry = { tab: string; openapi?: OpenApiRef } & (
   | { pages: PageEntry[]; groups?: never }
 );
 
+type ProductEntry = {
+  product: string;
+  tabs: TabEntry[];
+};
+
 interface DocsJson {
-  navigation: {
-    tabs: TabEntry[];
-  };
+  navigation:
+    | { tabs: TabEntry[] }
+    | { products: ProductEntry[] };
 }
 
 export interface PageMetadata {
@@ -71,7 +76,12 @@ export function* walkNavigation(opts: WalkOptions): Generator<WalkItem> {
   const docsJsonPath = join(opts.docsRoot, "docs.json");
   const docs: DocsJson = JSON.parse(readFileSync(docsJsonPath, "utf-8"));
 
-  for (const tab of docs.navigation.tabs) {
+  const tabs =
+    "tabs" in docs.navigation
+      ? docs.navigation.tabs
+      : docs.navigation.products.flatMap((product) => product.tabs);
+
+  for (const tab of tabs) {
     if (opts.includeTab && !opts.includeTab(tab.tab)) continue;
 
     yield { type: "group", group: tab.tab, depth: 0 };
