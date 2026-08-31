@@ -10465,11 +10465,12 @@ Secondary: #00E9A3 (Cyan Green)
 # Overview
 Source: https://upstash.com/docs/introduction
 
-import { Hero, SectionHead, ProductGrid, UtilityGrid, Community } from "/snippets/landing.jsx";
+import { Hero, PromptToolIcons, SectionHead, ProductGrid, UtilityGrid, Community } from "/snippets/landing.jsx";
 
 <div className="u-wrap">
   <Hero>
     <div className="u-prompt-action">
+      <PromptToolIcons />
       <Prompt actions={["copy"]}>
         Help me add the right Upstash product to this project. Review the project first, then choose Redis, Vector, QStash, Workflow, Search, Box, Realtime, or Rate Limit based on its needs. Use the current Upstash documentation at https://upstash.com/docs. Implement the smallest working setup, list the required environment variables, and add a quick verification step.
       </Prompt>
