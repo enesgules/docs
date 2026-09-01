@@ -17,14 +17,13 @@
         { "product": "Vector", "icon": "/img/icons/vector.svg" },
         { "product": "QStash", "icon": "/img/icons/qstash.svg" },
         { "product": "Workflow", "icon": "/img/icons/workflow.svg" },
-        { "product": "Search", "icon": "/img/icons/search.svg" },
-        { "product": "Box", "icon": "/img/icons/box.svg" }
+        { "product": "Box", "icon": "/img/icons/box.svg" },
+        { "product": "Search", "icon": "/img/icons/search.svg" }
       ]
     },
     {
       "group": "Utility",
       "products": [
-        { "product": "Realtime" },
         {
           "product": "Rate Limit",
           "groups": [
@@ -62,7 +61,8 @@
               ]
             }
           ]
-        }
+        },
+        { "product": "Realtime" }
       ]
     }
   ],
@@ -72,52 +72,52 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "Introduction",
+            "group": "Get Started",
             "pages": [
-              "introduction"
-            ]
-          },
-          {
-            "group": "Concepts",
-            "pages": [
-              "common/concepts/serverless",
-              "common/concepts/scale-to-zero",
-              "common/concepts/global-replication",
-              "common/concepts/access-anywhere"
-            ]
-          },
-          {
-            "group": "Agent Resources",
-            "pages": [
-              "agent-resources/cli",
-              "agent-resources/skills",
-              "agent-resources/mcp",
-              "agent-resources/llms-txt"
-            ]
-          },
-          {
-            "group": "Help",
-            "pages": [
+              "introduction",
               {
-                "group": "Account & Teams",
+                "group": "Agent Setup",
                 "pages": [
-                  "common/account/createaccount",
-                  "common/account/teams",
-                  "common/account/developerapi",
-                  "common/account/add-payment-method",
-                  "common/account/awsmarketplace",
-                  "common/account/costexplorer",
-                  "common/account/paymenthistory",
-                  "common/account/auditlogs",
-                  "common/account/faq"
+                  "agent-resources/cli",
+                  "agent-resources/skills",
+                  "agent-resources/mcp",
+                  "agent-resources/llms-txt"
                 ]
               },
-              "common/help/support",
-              "common/help/prosupport",
-              "common/help/sla",
-              "common/help/uptime",
-              "common/help/legal",
-              "common/help/compliance"
+              {
+                "group": "Concepts",
+                "pages": [
+                  "common/concepts/serverless",
+                  "common/concepts/scale-to-zero",
+                  "common/concepts/global-replication",
+                  "common/concepts/access-anywhere"
+                ]
+              },
+              {
+                "group": "Support",
+                "pages": [
+                  {
+                    "group": "Account & Teams",
+                    "pages": [
+                      "common/account/createaccount",
+                      "common/account/teams",
+                      "common/account/developerapi",
+                      "common/account/add-payment-method",
+                      "common/account/awsmarketplace",
+                      "common/account/costexplorer",
+                      "common/account/paymenthistory",
+                      "common/account/auditlogs",
+                      "common/account/faq"
+                    ]
+                  },
+                  "common/help/support",
+                  "common/help/prosupport",
+                  "common/help/sla",
+                  "common/help/uptime",
+                  "common/help/legal",
+                  "common/help/compliance"
+                ]
+              }
             ]
           }
         ]
