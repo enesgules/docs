@@ -102014,7 +102014,7 @@ For example, let's debug the following failed run. Judging by the status code `4
 
   <img />
 
-# Flow control
+# Flow Control
 Source: https://upstash.com/docs/workflow/howto/flow-control
 
 # Get your QStash Token
